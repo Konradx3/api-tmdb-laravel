@@ -1,0 +1,65 @@
+services:
+    app:
+        build:
+            context: php
+            dockerfile: Dockerfile
+        restart: unless-stopped
+        working_dir: /var/www/html
+        volumes:
+            - ./src/:/var/www/html
+        user: "1000:1000"
+        networks:
+            - laravel-network
+        ports:
+            - "9000:9000"
+        depends_on:
+            - db
+
+    webserver:
+        image: nginx:alpine
+        restart: unless-stopped
+        ports:
+            - "80:80"
+            - "443:443"
+        volumes:
+            - ./src/:/var/www/html
+            - ./nginx/:/etc/nginx/conf.d/
+        networks:
+            - laravel-network
+
+    db:
+        image: mysql:8.1
+        ports:
+            - "3306:3306"
+        volumes:
+            - ./db/data:/var/lib/mysql
+            - ./db/logs:/var/log/mysql
+            - ./db/my.cnf:/etc/mysql/conf.d/my.cnf
+            - ./db/sql:/docker-entrypoint-initdb.d
+        environment:
+            MYSQL_ROOT_PASSWORD: admin
+            MYSQL_DATABASE: ${DB_DATABASE}
+            MYSQL_USER: ${DB_USERNAME}
+            MYSQL_PASSWORD: ${DB_PASSWORD}
+        networks:
+            - laravel-network
+
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        ports:
+            - "8080:80"
+        depends_on:
+            - db
+        environment:
+            PMA_HOST: db
+            PMA_PORT: 3306
+            PMA_ARBITRARY: 1
+        networks:
+            - laravel-network
+
+volumes:
+    db-data:
+
+networks:
+    laravel-network:
+        driver: bridge
