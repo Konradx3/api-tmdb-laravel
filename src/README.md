@@ -1,5 +1,9 @@
 # Recruitment - Endpoint Description
 
+## Configuration
+Copy the .env.example file and paste it next to it as .env and then complete 
+DB_DATABASE, DB_USERNAME, DB_PASSWORD, TMDB_API_KEY
+
 ## Endpoints
 **All endpoints are available at:**
 `/api/v1/...`
