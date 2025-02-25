@@ -1,4 +1,4 @@
-# 🎬 TMDB REST API
+# Rekrutacja - opis endpointów
 
 ## Endpointy
 **Wszystkie endpointy znajdują się pod:**
@@ -19,4 +19,9 @@ Każdy endpoint akceptuje parametr `lang`:
 Przykład:
 ```
 GET /api/v1/movies?lang=pl
+```
+
+## Pobieranie danych z TMDB
+```
+php artisan app:fetch-tmdb-data 
 ```
