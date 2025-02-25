@@ -1,27 +1,28 @@
-# Rekrutacja - opis endpointów
+# Recruitment - Endpoint Description
 
-## Endpointy
-**Wszystkie endpointy znajdują się pod:**
+## Endpoints
+**All endpoints are available at:**
 `/api/v1/...`
 
-| Metoda | Endpoint         | Opis           |
+| Method | Endpoint         | Description           |
 |--------|-----------------|----------------|
-| GET    | `/movies`       | Lista filmów   |
-| GET    | `/series`       | Lista seriali  |
-| GET    | `/genres`       | Lista gatunków |
+| GET    | `/movies`       | Movie list   |
+| GET    | `/series`       | Series list  |
+| GET    | `/genres`       | Genre list |
 
-## Obsługa języków
-Każdy endpoint akceptuje parametr `lang`:
-- `en` → Angielski (domyślnie)
-- `pl` → Polski
-- `de` → Niemiecki
+## Language Support
+Each endpoint accepts a `lang` parameter:
+- `en` → English (default)
+- `pl` → Polish
+- `de` → German
 
-Przykład:
+Example:
+
 ```
 GET /api/v1/movies?lang=pl
 ```
 
-## Pobieranie danych z TMDB
+## Fetching Data from TMDB
 ```
 php artisan app:fetch-tmdb-data 
 ```
