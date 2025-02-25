@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Repositories\SerieRepository;
 use App\Http\Resources\V1\SerieResource;
 use App\Traits\ApiResponses;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class SerieController extends Controller
@@ -19,6 +20,12 @@ class SerieController extends Controller
         $this->serieRepository = $serieRepository;
     }
 
+    /**
+     * Retrieve a list of series.
+     *
+     * @param Request $request HTTP request instance.
+     * @return JsonResponse JSON response with series data or error message.
+     */
     public function index(Request $request)
     {
         $lang = $request->get('lang', 'en');

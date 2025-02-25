@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Repositories\GenreRepository;
 use App\Http\Resources\V1\GenreResource;
 use App\Traits\ApiResponses;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class GenreController extends Controller
@@ -19,6 +20,12 @@ class GenreController extends Controller
         $this->genreRepository = $genreRepository;
     }
 
+    /**
+    * Retrieve a list of genres.
+    *
+    * @param Request $request HTTP request instance.
+    * @return JsonResponse JSON response with genres data or error message.
+    */
     public function index(Request $request)
     {
         $lang = $request->get('lang', 'en');

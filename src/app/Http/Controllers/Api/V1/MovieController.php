@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Repositories\MovieRepository;
 use App\Http\Resources\V1\MovieResource;
 use App\Traits\ApiResponses;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class MovieController extends Controller
@@ -19,6 +20,12 @@ class MovieController extends Controller
         $this->movieRepository = $movieRepository;
     }
 
+    /**
+     * Retrieve a list of movies.
+     *
+     * @param Request $request HTTP request instance.
+     * @return JsonResponse JSON response with movies data or error message.
+     */
     public function index(Request $request)
     {
         $lang = $request->get('lang', 'en');
